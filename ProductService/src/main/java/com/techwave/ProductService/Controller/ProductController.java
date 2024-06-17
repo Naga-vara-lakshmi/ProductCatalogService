@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techwave.ProductService.Entity.Product;
+import com.techwave.ProductService.FeignProxy.UserProxy;
 import com.techwave.ProductService.Service.IProduct;
 
 @RestController
 public class ProductController {
 	@Autowired
 	IProduct productService;
+	@Autowired
+	UserProxy userProxy;
 
 	@GetMapping("/getAllProducts")
 	public ResponseEntity<List<Product>> getAllProducts() {
@@ -41,5 +44,9 @@ public class ProductController {
 	@DeleteMapping("deleteProductById/{id}")
 	public ResponseEntity<String> deleteProductById(@PathVariable int id){
 		return productService.deleteProductById(id);
+	}
+	@GetMapping("/getUserById/{id}")
+	public ResponseEntity<Object> getUserById(@PathVariable int id){
+		return userProxy.getUserById(id);
 	}
 }
