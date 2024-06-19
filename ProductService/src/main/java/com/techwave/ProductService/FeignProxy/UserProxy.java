@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.techwave.ProductService.FeignClinetConfig.FeignClientConfiguration;
 
-@FeignClient(name = "SpringSecurityDemo",url = "localhost:8080",configuration = FeignClientConfiguration.class)
+@FeignClient(name = "SpringSecurityDemo",configuration = FeignClientConfiguration.class)
 public interface UserProxy {
 	@GetMapping("/user/getUserById/{id}")
 	public ResponseEntity<Object> getUserById(@PathVariable int id);
